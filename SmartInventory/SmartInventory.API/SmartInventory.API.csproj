@@ -10,4 +10,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SmartInventory.Application\SmartInventory.Application.csproj" />
+    <ProjectReference Include="..\SmartInventory.Infrastructure\SmartInventory.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
