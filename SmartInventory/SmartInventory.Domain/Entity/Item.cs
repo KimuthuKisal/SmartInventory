@@ -11,7 +11,7 @@ namespace SmartInventory.Domain.Entity
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Type { get; set; }            // Metal, Wood, Plastic, Glass, Concrete, Aluminium, Paper, Oil, Tape, Powder
+        public string Type { get; set; }            // Metal, Wood, Plastic, Glass, Concrete, Aluminium, Paper, Oil, Tape, Powder, Other
         public float Count { get; set; }
         public string Frequency { get; set; }       // High -> H, Medium -> M, Low -> L
         public float UnitPriceBuy { get; set; }
