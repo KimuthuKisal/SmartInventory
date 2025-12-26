@@ -16,7 +16,6 @@
     <Folder Include="Items\Commands\CreateItem\" />
     <Folder Include="Items\Commands\DeleteItem\" />
     <Folder Include="Items\Commands\UpdateItem\" />
-    <Folder Include="Items\Queries\GetItemById\" />
   </ItemGroup>
 
   <ItemGroup>
