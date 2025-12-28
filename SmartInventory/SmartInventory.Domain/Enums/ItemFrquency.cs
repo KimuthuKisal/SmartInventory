@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartInventory.Domain.Enums
 {
-    public class ItemFrquency
+    public static class ItemFrquency
     {
         public const string High = "H";
         public const string Medium = "M";

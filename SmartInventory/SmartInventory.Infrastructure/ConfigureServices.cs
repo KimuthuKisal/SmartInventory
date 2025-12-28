@@ -18,7 +18,7 @@ namespace SmartInventory.Infrastructure
         {
             services.AddDbContext<SmartInventoryDbContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("ConnectionString") ?? throw new InvalidOperationException("Connection string not found"));
+                options.UseSqlServer(configuration.GetConnectionString("SmartInventoryDatabase") ?? throw new InvalidOperationException("Connection string not found"));
             });
 
             services.AddTransient<IItemRepository, ItemRepository>();

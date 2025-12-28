@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartInventory.Domain.Enums
 {
-    public class ItemType
+    public static class ItemType
     {
         public const string Metal = "MTL";
         public const string Wood = "WD";

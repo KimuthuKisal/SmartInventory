@@ -15,7 +15,6 @@ namespace SmartInventory.Infrastructure.Data
 
         }
 
-
         public DbSet<Item> Items { get; set; }
     }
 }

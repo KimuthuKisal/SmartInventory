@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartInventory.Domain.Enums
 {
-    public class ItemTransportTypes
+    public static class ItemTransportTypes
     {
         public const string SingleUnit = "ONE";
         public const string AllUnits = "ALL";

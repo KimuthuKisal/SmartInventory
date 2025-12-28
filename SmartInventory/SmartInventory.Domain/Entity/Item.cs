@@ -12,16 +12,16 @@ namespace SmartInventory.Domain.Entity
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public ItemType Type { get; set; }                          // Metal, Wood, Plastic, Glass, Concrete, Aluminium, Paper, Oil, Tape, Powder, Other
+        public string Type { get; set; }                          // Metal, Wood, Plastic, Glass, Concrete, Aluminium, Paper, Oil, Tape, Powder, Other
         public float Count { get; set; }
-        public ItemFrquency Frequency { get; set; }                 // High -> H, Medium -> M, Low -> L
+        public string Frequency { get; set; }                 // High -> H, Medium -> M, Low -> L
         public float UnitPriceBuy { get; set; }
         public float UnitPriceSell { get; set; }
         public float Discount { get; set; }
         public float TransportCost { get; set; }
-        public ItemTransportTypes TransportType { get; set; }       // Per Unit -> S, For all -> A
+        public string TransportType { get; set; }       // Per Unit -> S, For all -> A
         public float LoadingCost { get; set; }
-        public ItemLoadingTypes LoadingType { get; set; }           // Per Unit -> S, For all -> A
+        public string LoadingType { get; set; }           // Per Unit -> S, For all -> A
         public ItemActiveStatus ActiveStatus { get; set; }          // Active -> 1, Deactive -> 0, Deleted -> -1
     }
 }
