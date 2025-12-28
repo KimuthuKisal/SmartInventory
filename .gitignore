@@ -33,4 +33,4 @@ Thumbs.db
 # =========================
 # Ignore EF Core Migrations for Infrastructure project
 # =========================
-SmartInventory.Infrastructure/Migrations/
+SmartInventory.Infrastructure/Migrations/*
