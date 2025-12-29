@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SmartInventory.Application.Items.Commands.CreateItem;
 using SmartInventory.Application.Items.Queries.GetActiveItems;
 using SmartInventory.Application.Items.Queries.GetDeactiveItems;
 using SmartInventory.Application.Items.Queries.GetItemById;
@@ -43,6 +44,13 @@ namespace SmartInventory.API.Controllers
             }
 
             return Ok(item);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateItemAsync(CreateItemCommand command)
+        {
+            ItemViewModel createdItem = await mediator.Send(command);
+            return Ok(createdItem);
         }
     }
 }
