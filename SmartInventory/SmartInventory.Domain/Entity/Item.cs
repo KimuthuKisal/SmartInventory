@@ -19,9 +19,9 @@ namespace SmartInventory.Domain.Entity
         public float UnitPriceSell { get; set; }
         public float Discount { get; set; }
         public float TransportCost { get; set; }
-        public string TransportType { get; set; }       // Per Unit -> S, For all -> A
+        public string TransportType { get; set; }       // Per Unit -> S, For all -> A, NA
         public float LoadingCost { get; set; }
-        public string LoadingType { get; set; }           // Per Unit -> S, For all -> A
+        public string LoadingType { get; set; }           // Per Unit -> S, For all -> A, NA
         public ItemActiveStatus ActiveStatus { get; set; }          // Active -> 1, Deactive -> 0, Deleted -> -1
     }
 }
