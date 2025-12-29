@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SmartInventory.Application.Items.Commands.CreateItem;
+using SmartInventory.Application.Items.Commands.DeactivateItem;
 using SmartInventory.Application.Items.Commands.DeleteItem;
+using SmartInventory.Application.Items.Commands.ReactivateItem;
 using SmartInventory.Application.Items.Commands.UpdateItem;
 using SmartInventory.Application.Items.Queries.GetActiveItems;
 using SmartInventory.Application.Items.Queries.GetDeactiveItems;
@@ -66,13 +68,41 @@ namespace SmartInventory.API.Controllers
         public async Task<IActionResult> DeleteItemAsync(int id)
         {
             int status = await mediator.Send(new DeleteItemCommand {  ItemId = id });
-            if (status == 0)
+            if (status > 0)
             {
                 return Ok("Item delete success.");
             }
             else
             {
                 return Ok("Item delete unsuccess.");
+            }
+        }
+
+        [HttpPut("reactivate/{id}")]
+        public async Task<IActionResult> ReactivateItemAsync(int id)
+        {
+            int status = await mediator.Send(new ReactivateItemCommand { ItemId = id });
+            if (status > 0)
+            {
+                return Ok("Item reactivation success.");
+            }
+            else
+            {
+                return Ok("Item reactivation unsuccess.");
+            }
+        }
+
+        [HttpPut("deactivate/{id}")]
+        public async Task<IActionResult> DectivateItemAsync(int id)
+        {
+            int status = await mediator.Send(new DeactivateItemCommand { ItemId = id });
+            if (status > 0)
+            {
+                return Ok("Item deactivation success.");
+            }
+            else
+            {
+                return Ok("Item deactivation unsuccess.");
             }
         }
     }
