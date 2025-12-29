@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SmartInventory.Application.Items.Commands.CreateItem;
+using SmartInventory.Application.Items.Commands.DeleteItem;
+using SmartInventory.Application.Items.Commands.UpdateItem;
 using SmartInventory.Application.Items.Queries.GetActiveItems;
 using SmartInventory.Application.Items.Queries.GetDeactiveItems;
 using SmartInventory.Application.Items.Queries.GetItemById;
@@ -51,6 +53,27 @@ namespace SmartInventory.API.Controllers
         {
             ItemViewModel createdItem = await mediator.Send(command);
             return Ok(createdItem);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateItemAsync(UpdateItemCommand command)
+        {
+            ItemViewModel updatedItem = await mediator.Send(command);
+            return Ok(updatedItem);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteItemAsync(int id)
+        {
+            int status = await mediator.Send(new DeleteItemCommand {  ItemId = id });
+            if (status == 0)
+            {
+                return Ok("Item delete success.");
+            }
+            else
+            {
+                return Ok("Item delete unsuccess.");
+            }
         }
     }
 }
