@@ -35,7 +35,10 @@ namespace SmartInventory.Infrastructure.Repository
 
         public async Task<int> DeleteItem(int id)
         {
-            return await _context.Items.Where(item => item.Id == id).ExecuteDeleteAsync();
+            //return await _context.Items.Where(item => item.Id == id).ExecuteDeleteAsync();
+            return await _context.Items.Where(it => it.Id == id).ExecuteUpdateAsync(setter => setter
+                .SetProperty(i => i.ActiveStatus, ItemActiveStatus.Deleted)
+            );
         }
 
         public async Task<List<Item>> GetAllActiveItems()
