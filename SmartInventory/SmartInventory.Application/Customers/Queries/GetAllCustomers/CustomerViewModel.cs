@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SmartInventory.Application.Common.Mappings;
+using SmartInventory.Domain.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SmartInventory.Application.Customers.Queries.GetAllCustomers
 {
-    public class CustomerViewModel
+    public class CustomerViewModel : IMapFrom<Customer>
     {
         public int Id { get; set; }
         public string Name { get; set; }
