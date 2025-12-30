@@ -71,7 +71,7 @@ namespace SmartInventory.Infrastructure.Repository
             return await _context.Customers.Where(cus => cus.Id == id).ExecuteUpdateAsync(setter => setter
                 .SetProperty(c => c.TotalPurchases, customer.TotalPurchases+1)
                 .SetProperty(c => c.TotalPurchaseAmount, customer.TotalPurchaseAmount + totalBillAmount)
-                .SetProperty(c => c.TotalLoyaltyPoints, customer.TotalLoyaltyPoints - redeemLoyaltyPointsAmount)
+                .SetProperty(c => c.TotalLoyaltyPoints, customer.TotalLoyaltyPoints - redeemLoyaltyPointsAmount + Math.Round(totalBillAmount / 100.0, 2))
             );
         }
     }
