@@ -18,5 +18,7 @@ namespace SmartInventory.Domain.Repository
         Task<int> DeleteItem(int id);
         Task<int> DeactivateItem(int id);
         Task<int> ReactivateItem(int id);
+        Task<List<Item>> GetActiveItemsByCategory(string category);
+        Task<List<Item>> GetActiveItemsBySearch(string searchString);
     }
 }

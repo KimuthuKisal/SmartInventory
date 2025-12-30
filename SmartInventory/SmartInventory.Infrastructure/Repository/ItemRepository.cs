@@ -41,6 +41,16 @@ namespace SmartInventory.Infrastructure.Repository
             );
         }
 
+        public async Task<List<Item>> GetActiveItemsByCategory(string category)
+        {
+            return await _context.Items.Where(item => item.Type == category).ToListAsync();
+        }
+
+        public async Task<List<Item>> GetActiveItemsBySearch(string searchString)
+        {
+            return await _context.Items.Where(item => item.Name.Contains(searchString) || item.Description.Contains(searchString)).ToListAsync();
+        }
+
         public async Task<List<Item>> GetAllActiveItems()
         {
             return await _context.Items.Where(item => item.ActiveStatus == ItemActiveStatus.Active).ToListAsync();
