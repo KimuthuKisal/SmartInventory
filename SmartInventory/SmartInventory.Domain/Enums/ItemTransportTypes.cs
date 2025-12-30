@@ -10,5 +10,6 @@ namespace SmartInventory.Domain.Enums
     {
         public const string SingleUnit = "ONE";
         public const string AllUnits = "ALL";
+        public const string NotAvailable = "NA";
     }
 }

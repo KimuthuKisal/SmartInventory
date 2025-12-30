@@ -17,6 +17,8 @@ namespace SmartInventory.Domain.Entity
         public string Frequency { get; set; }                 // High -> H, Medium -> M, Low -> L
         public float UnitPriceBuy { get; set; }
         public float UnitPriceSell { get; set; }
+        public string Unit { get; set; }
+        public float AmountPerUnit { get; set; }
         public float Discount { get; set; }
         public float TransportCost { get; set; }
         public string TransportType { get; set; }       // Per Unit -> S, For all -> A, NA

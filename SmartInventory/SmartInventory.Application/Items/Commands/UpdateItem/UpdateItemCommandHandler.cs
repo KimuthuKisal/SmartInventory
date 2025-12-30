@@ -34,6 +34,8 @@ namespace SmartInventory.Application.Items.Commands.UpdateItem
                 Frequency = request.Frequency,
                 UnitPriceBuy = request.UnitPriceBuy,
                 UnitPriceSell = request.UnitPriceSell,
+                Unit = request.Unit,
+                AmountPerUnit = request.AmountPerUnit,
                 Discount = request.Discount,
                 TransportCost = request.TransportCost,
                 TransportType = request.TransportType,

@@ -78,6 +78,8 @@ namespace SmartInventory.Infrastructure.Repository
                 .SetProperty(i => i.Frequency, item.Frequency)
                 .SetProperty(i => i.UnitPriceBuy, item.UnitPriceBuy)
                 .SetProperty(i => i.UnitPriceSell, item.UnitPriceSell)
+                .SetProperty(i => i.Unit, item.Unit)
+                .SetProperty(i => i.AmountPerUnit, item.AmountPerUnit)
                 .SetProperty(i => i.Discount, item.Discount)
                 .SetProperty(i => i.TransportCost, item.TransportCost)
                 .SetProperty(i => i.TransportType, item.TransportType)
