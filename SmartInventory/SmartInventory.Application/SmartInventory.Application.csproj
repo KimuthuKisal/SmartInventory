@@ -12,6 +12,9 @@
 
   <ItemGroup>
     <Folder Include="Common\Exceptions\" />
+    <Folder Include="Customers\Commands\CreateCustomer\" />
+    <Folder Include="Customers\Commands\ChangeLoyaltyDiscount\" />
+    <Folder Include="Customers\Commands\UpdateCustomer\" />
   </ItemGroup>
 
   <ItemGroup>

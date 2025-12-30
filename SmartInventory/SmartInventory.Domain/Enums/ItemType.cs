@@ -13,6 +13,7 @@ namespace SmartInventory.Domain.Enums
         public const string Plastic = "PL";
         public const string Glass = "GLS";
         public const string Concrete = "CON";
+        public const string Cement = "CMNT";
         public const string Oil = "OIL";
         public const string Tape = "TP";
         public const string Powder = "PWDR";
