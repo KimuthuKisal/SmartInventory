@@ -9,6 +9,8 @@ using SmartInventory.Application.Items.Queries.GetActiveItems;
 using SmartInventory.Application.Items.Queries.GetDeactiveItems;
 using SmartInventory.Application.Items.Queries.GetItemById;
 using SmartInventory.Application.Items.Queries.GetItems;
+using SmartInventory.Application.Items.Queries.GetItemsByCategory;
+using SmartInventory.Application.Items.Queries.GetItemsBySearch;
 
 namespace SmartInventory.API.Controllers
 {
@@ -104,6 +106,20 @@ namespace SmartInventory.API.Controllers
             {
                 return Ok("Item deactivation unsuccess.");
             }
+        }
+
+        [HttpGet("getByCategory/{type}")]
+        public async Task<IActionResult> GetItemsByCategoryAsync(string type)
+        {
+            List<ItemViewModel> itemList = await mediator.Send(new GetItemsByCategoryCommand { Type = type });
+            return Ok(itemList);
+        }
+
+        [HttpGet("searchItem/{search}")]
+        public async Task<IActionResult> GetItemsBySearchAsync(string search)
+        {
+            List<ItemViewModel> itemList = await mediator.Send(new GetItemsBySearchCommand { SearchString = search });
+            return Ok(itemList);
         }
     }
 }
