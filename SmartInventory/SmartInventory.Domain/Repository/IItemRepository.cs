@@ -21,7 +21,7 @@ namespace SmartInventory.Domain.Repository
         Task<int> ReactivateItem(int id);
         Task<List<Item>> GetActiveItemsByCategory(string category);
         Task<List<Item>> GetActiveItemsBySearch(string searchString);
-        Task<Item> UpdateItemRemainingCount(int id, int count);
+        Task<Item> UpdateItemRemainingCount(int id, float count);
         Task<List<TopSellingItemDto>> GetTopSellingItems(DateTime startDate, DateTime endDate);
     }
 }

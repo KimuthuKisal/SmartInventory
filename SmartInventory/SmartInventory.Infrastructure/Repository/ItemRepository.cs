@@ -130,7 +130,7 @@ namespace SmartInventory.Infrastructure.Repository
             return await _context.Items.AsNoTracking().FirstOrDefaultAsync(item => item.Id == id);
         }
 
-        public async Task<Item> UpdateItemRemainingCount(int id, int count)
+        public async Task<Item> UpdateItemRemainingCount(int id, float count)
         {
             await _context.Items.Where(it => it.Id == id).ExecuteUpdateAsync(setter => setter
                 .SetProperty(i => i.Count, i => i.Count + count)
