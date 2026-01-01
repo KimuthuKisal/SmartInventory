@@ -11,6 +11,8 @@ using SmartInventory.Application.Items.Queries.GetItemById;
 using SmartInventory.Application.Items.Queries.GetItems;
 using SmartInventory.Application.Items.Queries.GetItemsByCategory;
 using SmartInventory.Application.Items.Queries.GetItemsBySearch;
+using SmartInventory.Application.Items.Queries.GetTopSellingItems;
+using SmartInventory.Domain.Dtos;
 
 namespace SmartInventory.API.Controllers
 {
@@ -120,6 +122,13 @@ namespace SmartInventory.API.Controllers
         {
             List<ItemViewModel> itemList = await mediator.Send(new GetItemsBySearchCommand { SearchString = search });
             return Ok(itemList);
+        }
+
+        [HttpGet("topSelling/{startDate}/{endDate}")]
+        public async Task<IActionResult> GetTopSellingItems(DateTime startDate, DateTime endDate)
+        {
+            List<TopSellingItemDto> itemlist = await mediator.Send(new GetTopSellingItemQuery { StartDate = startDate, EndDate = endDate }); 
+            return Ok(itemlist);
         }
     }
 }
