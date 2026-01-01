@@ -162,6 +162,8 @@ namespace SmartInventory.Infrastructure.Repository
                 .SetProperty(i => i.LoadingCost, (float)Math.Round(loadingCost, 2))
             );
 
+            //TODO - reduce item available quantity
+
             return await _context.OrderItems.AsNoTracking().FirstOrDefaultAsync(item => item.Id == itemId);
         }
 
