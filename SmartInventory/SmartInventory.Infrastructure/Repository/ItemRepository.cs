@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SmartInventory.Domain.Dtos;
 using SmartInventory.Domain.Entity;
 using SmartInventory.Domain.Enums;
 using SmartInventory.Domain.Repository;
@@ -71,6 +72,34 @@ namespace SmartInventory.Infrastructure.Repository
             return await _context.Items.AsNoTracking().FirstOrDefaultAsync(item => item.Id == id);
         }
 
+        public async Task<List<TopSellingItemDto>> GetTopSellingItems(DateTime startDate, DateTime endDate)
+        {
+            return await _context.OrderItems
+                .Join(
+                    _context.Orders,
+                    oi => oi.OrderId,
+                    o => o.Id,
+                    (oi, o) => new { oi, o }
+                )
+                .Join(
+                    _context.Items,
+                    x => x.oi.ItemId,
+                    i => i.Id,
+                    (x, i) => new { x.oi, x.o, i }
+                )
+                .Where(x => x.o.OrderDateTime >= startDate &&
+                            x.o.OrderDateTime <= endDate)
+                .GroupBy(x => x.i.Id)
+                .Select(g => new TopSellingItemDto
+                {
+                    Item = g.First().i,
+                    TotalSold = g.Sum(x => x.oi.OrderAmount)
+                })
+                .OrderByDescending(x => x.TotalSold)
+                .Take(5)
+                .ToListAsync();
+        }
+
         public async Task<int> ReactivateItem(int id)
         {
             return await _context.Items.Where(it => it.Id == id).ExecuteUpdateAsync(setter => setter
@@ -98,6 +127,14 @@ namespace SmartInventory.Infrastructure.Repository
                 .SetProperty(i => i.ActiveStatus, item.ActiveStatus)
             );
 
+            return await _context.Items.AsNoTracking().FirstOrDefaultAsync(item => item.Id == id);
+        }
+
+        public async Task<Item> UpdateItemRemainingCount(int id, int count)
+        {
+            await _context.Items.Where(it => it.Id == id).ExecuteUpdateAsync(setter => setter
+                .SetProperty(i => i.Count, i => i.Count + count)
+            );
             return await _context.Items.AsNoTracking().FirstOrDefaultAsync(item => item.Id == id);
         }
     }

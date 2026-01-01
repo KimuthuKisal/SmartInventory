@@ -1,4 +1,5 @@
-﻿using SmartInventory.Domain.Entity;
+﻿using SmartInventory.Domain.Dtos;
+using SmartInventory.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace SmartInventory.Domain.Repository
         Task<int> ReactivateItem(int id);
         Task<List<Item>> GetActiveItemsByCategory(string category);
         Task<List<Item>> GetActiveItemsBySearch(string searchString);
-        //Task<Item> UpdateItemRemainingCount(int id, int count);
-        //Task<Item> GetTopSellingItems();
+        Task<Item> UpdateItemRemainingCount(int id, int count);
+        Task<List<TopSellingItemDto>> GetTopSellingItems(DateTime startDate, DateTime endDate);
     }
 }
