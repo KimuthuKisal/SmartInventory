@@ -35,9 +35,19 @@ namespace SmartInventory.Infrastructure.Repository
 
                 //foreach (var item in order.OrderItemDetails)
                 //{
-                //    item.OrderId = order.OrderDetails.Id; 
+                //    item.OrderId = order.OrderDetails.Id;
                 //    await _context.OrderItems.AddAsync(item);
                 //}
+
+                foreach (var orderItem in order.OrderItemDetails)
+                {
+                    Item item = await _itemRepository.GetItemById(orderItem.ItemId);
+                    if (item.Count < orderItem.OrderAmount)
+                    {
+                        //order.OrderItemDetails.Remove(orderItem);       // Remove entire order
+                        orderItem.OrderAmount = item.Count;             // Continue with existing quantity
+                    }
+                }
 
                 await _context.OrderItems.AddRangeAsync(order.OrderItemDetails);
                 await _context.SaveChangesAsync();
@@ -149,7 +159,7 @@ namespace SmartInventory.Infrastructure.Repository
             {
                 loadingCost = item.LoadingCost * orderItem.OrderAmount;
             }
-
+            
             await _context.OrderItems.Where(item => item.Id == itemId).ExecuteUpdateAsync(setter => setter
                 .SetProperty(i => i.TotalPrice, (float)Math.Round(totalValue, 2))
                 .SetProperty(i => i.StandardDiscount, (float)Math.Round(standardDiscount, 2))
@@ -162,7 +172,7 @@ namespace SmartInventory.Infrastructure.Repository
                 .SetProperty(i => i.LoadingCost, (float)Math.Round(loadingCost, 2))
             );
 
-            //TODO - reduce item available quantity
+            await _itemRepository.UpdateItemRemainingCount(item.Id, orderItem.OrderAmount);
 
             return await _context.OrderItems.AsNoTracking().FirstOrDefaultAsync(item => item.Id == itemId);
         }
