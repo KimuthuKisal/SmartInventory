@@ -1,3 +1,4 @@
+using SmartInventory.API.Middlewares;
 using SmartInventory.Application;
 using SmartInventory.Infrastructure;
 
@@ -15,6 +16,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

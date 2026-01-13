@@ -23,6 +23,7 @@ namespace SmartInventory.Infrastructure
 
             services.AddTransient<IItemRepository, ItemRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
 
             return services;
         }
