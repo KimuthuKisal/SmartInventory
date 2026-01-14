@@ -2,6 +2,8 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using SmartInventory.Application.Common.Behaviours;
+using SmartInventory.Application.Common.Interfaces;
+using SmartInventory.Application.Common.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,8 @@ namespace SmartInventory.Application
                 ctg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
                 ctg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             });
+
+            services.AddScoped<IJwtTokenService, JwtTokenService>();
 
             return services;
         }
